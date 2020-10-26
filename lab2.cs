@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
+using Microsoft.VisualBasic.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace lab2
 {
-    
+
     class Multitude
     {
         public List<string> multitude = new List<string>();
@@ -24,16 +24,36 @@ namespace lab2
             }
         }
 
-        public static Multitude operator ++ (Multitude element)//добавление элемента в множество
+        public static bool IsItThere(string i, List<string> multitude)
+        {
+            if (multitude.Count == 0)
+            {
+                return true;
+            }
+            else
+            {
+                foreach (string element in multitude)
+                {
+                    if (float.Parse(i) == float.Parse(element))
+                        return false;
+                }
+                return true;
+            }
+        }
+
+        public static Multitude operator ++(Multitude element)//добавление элемента в множество
         {
             Console.WriteLine("введите добавляемый элемент");
             string i = Console.ReadLine();
             if (IsItFloat(i))
-                element.multitude.Add(i);
+            {
+                if (IsItThere(i, element.multitude))
+                    element.multitude.Add(i);
+            }
             return element;
         }
 
-        public static Multitude operator -- (Multitude element)//удаление элемента из множества
+        public static Multitude operator --(Multitude element)//удаление элемента из множества
         {
             Console.WriteLine("введите удаляемый элемент");
             string i = Console.ReadLine();
@@ -52,7 +72,7 @@ namespace lab2
             {
                 bool flag = crossing.multitude.Contains(i);
                 if (!flag)
-                     crossing.multitude.Add(i);
+                    crossing.multitude.Add(i);
             }
             return crossing;
         }
@@ -87,7 +107,8 @@ namespace lab2
             Multitude second = new Multitude();
 
             bool flag = true;
-            while (true) {
+            while (true)
+            {
                 Console.WriteLine("---------------------------------------------\nЧто вы хотите сделать с множеством: Добавить элемент в первое множество (напишите \"1\")\n" +
     "Удалить элемент из первого множества (напишите \"2\"), Вывести на экран все первое множество (напишите \"3\")\n" +
     "Добавить элемент во второе множество (напишите \"4\"), Удалить элемент из второго множества (напишите \"5\")\n" +
@@ -107,7 +128,7 @@ namespace lab2
                 else if (choose == "6")
                     Multitude.WriteArray(second);
                 else if (choose == "7")
-                {                    
+                {
                     Multitude.WriteArray(first * second);
                 }
                 else if (choose == "8")
@@ -120,7 +141,7 @@ namespace lab2
                     Console.WriteLine("Неверный ввод, попробуйте еще раз");
             }
         }
-      
+
     }
 
 }
