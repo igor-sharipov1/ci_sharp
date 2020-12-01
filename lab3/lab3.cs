@@ -1,13 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
 namespace lab3
 {
+
     public abstract class Figure
     {
-        public double Size { get; set; }
+        public double Size { get; set; } //обозначаем поля абстрактного класса
         public int Frame { get; set; }
         public string Name { get; set; }
         public int Width { get; set; }
@@ -16,9 +17,9 @@ namespace lab3
 
         public abstract double GetSize();
     }
-    public class Square : Figure
+    public class Square : Figure  //наследуем абстрактный класс в класс каждой отдельной фигуры
     {
-        public override double GetSize()
+        public override double GetSize()//переопределяем метод нахождения площади
         {
             Size = (Width + Frame) * (Height + Frame);
             return Size;
@@ -26,7 +27,6 @@ namespace lab3
     }
 
     public class Rectangle : Figure
-    {
         public override double GetSize()
         {
             Size = (Height + Frame) * (Width + Frame);
@@ -53,8 +53,8 @@ namespace lab3
         }
     }
 
-    class FigureComparer : IComparer<Figure>
-    {
+    class FigureComparer : IComparer<Figure> //класс для сравнения двух объектов
+{
         public int Compare(Figure first, Figure second)
         {
             if (first.Size > second.Size)
@@ -73,9 +73,9 @@ namespace lab3
         }
     }
 
-    [Serializable]
-    public class GraphicEditor
-    {
+    [Serializable]//добавляем возможность для сериализации этого класса
+public class GraphicEditor//графический редактор, включающий в себя список фигур и методы построения фигур в консоль
+{
         public List<Figure> ListOfFigure = new List<Figure>();
 
         public void DrawEllipse(List<Figure> ListOfFigure, int number)
@@ -162,8 +162,8 @@ namespace lab3
     public class Program 
     {
 
-        public static bool IsItInt(string i)
-        {
+        public static bool IsItInt(string i)//проверка, является ли число целым и положительным
+    {
             try
             {
                 int a = Convert.ToInt32(i);
@@ -316,13 +316,13 @@ namespace lab3
             var path2 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//FromCodeSerialization.xml";
             XmlSerializer writer = new XmlSerializer(typeof(GraphicEditor));
 
-            StreamReader file2 = new StreamReader(path1);
-            GraphicEditor DeserializedList = (GraphicEditor)writer.Deserialize(file2);
+            StreamReader file2 = new StreamReader(path1);//десериализация
+        GraphicEditor DeserializedList = (GraphicEditor)writer.Deserialize(file2);
             file2.Close();
             Console.Write(DeserializedList.ListOfFigure[0].Name);
 
-            FileStream file1 = File.Create(path2);
-            writer.Serialize(file1, editor);
+            FileStream file1 = File.Create(path2);//сериализация
+        writer.Serialize(file1, editor);
             file1.Close();
 
             
