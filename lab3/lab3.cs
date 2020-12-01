@@ -5,10 +5,6 @@ using System.Xml.Serialization;
 
 namespace lab3
 {
-    [XmlInclude(typeof(Circle))]
-    [XmlInclude(typeof(Square))]
-    [XmlInclude(typeof(Ellipse))]
-    [XmlInclude(typeof(Rectangle))]
     public abstract class Figure
     {
         public double Size { get; set; }
