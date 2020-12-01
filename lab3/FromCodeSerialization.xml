@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<GraphicEditor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ListOfFigure>
+    <Figure xsi:type="Ellipse">
+      <Size>1055.04</Size>
+      <Frame>1</Frame>
+      <Name>Эллипс</Name>
+      <Width>20</Width>
+      <Height>15</Height>
+    </Figure>
+  </ListOfFigure>
+</GraphicEditor>
